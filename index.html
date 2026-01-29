@@ -2,51 +2,70 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>LamEarn</title>
+<title>LamEarn – Global Work Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root{
-  --primary:#2563eb;
-  --bg:#f4f6f8;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
+ --primary:#2563eb;
+ --secondary:#22c55e;
+ --danger:#dc2626;
+ --bg:#f3f4f6;
+ --card:#ffffff;
+ --text:#111827;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui;background:var(--bg);color:var(--text)}
-
-/* AUTH */
-.auth{min-height:100vh;display:flex;align-items:center;justify-content:center}
-.auth-box{
-  background:#fff;padding:24px;border-radius:16px;width:90%;max-width:360px
+body{
+ margin:0;
+ font-family:system-ui,-apple-system,BlinkMacSystemFont;
+ background:var(--bg);
+ color:var(--text);
 }
-.auth-box input, .auth-box button{
-  width:100%;padding:12px;margin-top:10px;font-size:14px
-}
-.auth-box button{background:var(--primary);color:#fff;border:none;border-radius:10px}
 
 /* HEADER */
 header{
-  position:fixed;top:0;left:0;width:100%;height:56px;
-  background:#fff;border-bottom:1px solid #e5e7eb;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 14px;z-index:20
+ position:fixed;top:0;left:0;
+ width:100%;height:56px;
+ background:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 14px;
+ border-bottom:1px solid #e5e7eb;
+ z-index:50;
 }
 header h1{font-size:18px;margin:0}
-header button{background:none;border:none;font-size:22px}
+header button{background:none;border:none;font-size:20px}
 
 /* MENU */
 #menu{
-  position:fixed;top:0;left:-280px;width:280px;height:100%;
-  background:#fff;border-right:1px solid #e5e7eb;
-  padding:14px;overflow-y:auto;transition:.3s;z-index:30
+ position:fixed;top:0;left:-300px;
+ width:300px;height:100%;
+ background:#fff;
+ overflow:auto;
+ transition:.3s;
+ z-index:100;
+ padding:14px;
 }
 #menu.open{left:0}
-#menu h3{margin:16px 0 6px;font-size:12px;color:var(--muted)}
+#menu h3{
+ margin:14px 0 6px;
+ font-size:12px;
+ color:#6b7280;
+}
 #menu button{
-  width:100%;text-align:left;background:none;border:none;
-  padding:10px;font-size:15px
+ width:100%;
+ background:none;
+ border:none;
+ text-align:left;
+ padding:10px;
+ font-size:14px;
+ display:flex;
+ gap:10px;
+ align-items:center;
 }
 
 /* MAIN */
@@ -54,31 +73,70 @@ main{padding:72px 14px 80px}
 .page{display:none}
 .page.active{display:block}
 
-/* SEARCH */
-.search{width:100%;padding:12px;border-radius:999px;border:1px solid #e5e7eb}
+/* CARD */
+.card{
+ background:var(--card);
+ border-radius:18px;
+ padding:18px;
+ max-width:420px;
+ margin:0 auto;
+ box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.card h2{margin-top:0}
 
-/* GRID */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.card{background:#fff;border-radius:16px;padding:12px}
-.img{height:120px;background:#e5e7eb;border-radius:12px;margin-bottom:10px}
-.btn{
-  width:100%;padding:10px;margin-top:8px;border:none;
-  background:var(--primary);color:#fff;border-radius:999px
+/* INPUTS */
+input,select,textarea{
+ width:100%;
+ padding:12px;
+ margin-bottom:12px;
+ border-radius:12px;
+ border:1px solid #d1d5db;
+ font-size:14px;
 }
 
-/* UPLOAD */
-.upload-box{
-  border:2px dashed #c7d2fe;
-  padding:30px;text-align:center;border-radius:16px;background:#fff
+/* BUTTONS */
+button.primary{
+ background:var(--primary);
+ color:#fff;
+ border:none;
+ width:100%;
+ padding:12px;
+ border-radius:999px;
+ font-size:15px;
 }
+button.google{
+ background:#fff;
+ border:1px solid #ddd;
+ display:flex;
+ justify-content:center;
+ gap:8px;
+}
+
+/* LINKS */
+.actions{
+ display:flex;
+ justify-content:space-between;
+ margin-top:10px;
+ font-size:14px;
+}
+.link{cursor:pointer;color:var(--primary)}
+.link.danger{color:var(--danger)}
 
 /* BOTTOM NAV */
 nav{
-  position:fixed;bottom:0;left:0;width:100%;height:60px;
-  background:#fff;border-top:1px solid #e5e7eb;display:flex
+ position:fixed;
+ bottom:0;left:0;
+ width:100%;
+ height:60px;
+ background:#fff;
+ display:flex;
+ border-top:1px solid #e5e7eb;
 }
 nav button{
-  flex:1;background:none;border:none;font-size:12px;color:#6b7280
+ flex:1;
+ border:none;
+ background:none;
+ font-size:12px;
 }
 nav button.active{color:var(--primary)}
 </style>
@@ -86,151 +144,174 @@ nav button.active{color:var(--primary)}
 
 <body>
 
-<!-- AUTH -->
-<section id="auth" class="auth">
-  <div class="auth-box">
-    <h2>LamEarn</h2>
-    <input placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button onclick="login()">Sign In</button>
-    <p style="text-align:center;margin-top:10px">
-      <a href="#" onclick="showRegister()">Create account</a>
-    </p>
-  </div>
-</section>
-
-<section id="register" class="auth" style="display:none">
-  <div class="auth-box">
-    <h2>Register</h2>
-    <input placeholder="Name">
-    <input placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button onclick="login()">Register</button>
-  </div>
-</section>
-
-<!-- MENU -->
-<aside id="menu">
-  <button onclick="go('home')">🏠 Home</button>
-  <button onclick="go('earn')">💰 Earn</button>
-  <button onclick="go('jobs')">🧑‍💻 Jobs</button>
-  <button onclick="go('tasks')">✅ Tasks</button>
-  <button onclick="go('products')">🛒 Products</button>
-  <button onclick="go('courses')">🎓 Courses</button>
-  <button onclick="go('posts')">📝 Posts</button>
-
-  <h3>WALLET</h3>
-  <button onclick="go('wallet')">💼 My Wallet</button>
-  <button onclick="go('withdraw')">💸 Withdraw</button>
-  <button onclick="go('deposit')">➕ Deposit</button>
-  <button onclick="go('transactions')">📊 Transactions</button>
-
-  <h3>SOCIAL</h3>
-  <button onclick="go('inbox')">📩 Inbox</button>
-  <button onclick="go('gifts')">🎁 Gifts</button>
-  <button onclick="go('referrals')">🤝 Referrals</button>
-  <button onclick="go('followers')">👥 Followers</button>
-
-  <h3>ACCOUNT</h3>
-  <button onclick="go('profile')">👤 Profile</button>
-  <button onclick="logout()">🚪 Logout</button>
-</aside>
-
-<!-- HEADER -->
-<header style="display:none" id="header">
-  <button id="backBtn" onclick="goBack()">←</button>
-  <h1>LamEarn</h1>
-  <button onclick="toggleMenu()">☰</button>
+<header>
+ <button onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+ <h1>LamEarn 🌍</h1>
+ <button onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i></button>
 </header>
 
-<!-- MAIN -->
-<main id="app" style="display:none">
+<!-- SIDE MENU (30+ ITEMS) -->
+<aside id="menu">
+ <button onclick="go('dashboard')"><i class="fa fa-home"></i> Dashboard</button>
+ <button onclick="go('upload')"><i class="fa fa-upload"></i> Upload</button>
+ <button onclick="go('jobs')"><i class="fa fa-briefcase"></i> Jobs</button>
+ <button onclick="go('tasks')"><i class="fa fa-check-circle"></i> Tasks</button>
+ <button onclick="go('products')"><i class="fa fa-cart-shopping"></i> Marketplace</button>
+ <button onclick="go('courses')"><i class="fa fa-graduation-cap"></i> Courses</button>
+ <button onclick="go('posts')"><i class="fa fa-pen"></i> Posts</button>
 
-<section id="home" class="page active">
-  <input class="search" placeholder="🔍 Search products, jobs, learning...">
-  <div class="grid">
-    <div class="card">
-      <div class="img"></div>
-      <b>Premium Book</b><br>$5
-      <button class="btn">🎁 Send Gift</button>
-    </div>
-    <div class="card">
-      <div class="img"></div>
-      <b>Learning Course</b><br>$10
-      <button class="btn">🎁 Send Gift</button>
-    </div>
+ <h3>WALLET</h3>
+ <button><i class="fa fa-wallet"></i> My Wallet</button>
+ <button><i class="fa fa-money-bill"></i> Withdraw</button>
+ <button><i class="fa fa-plus"></i> Deposit</button>
+ <button><i class="fa fa-chart-line"></i> Transactions</button>
+
+ <h3>SOCIAL</h3>
+ <button onclick="go('inbox')"><i class="fa fa-comments"></i> Inbox</button>
+ <button><i class="fa fa-gift"></i> Gifts</button>
+ <button><i class="fa fa-users"></i> Followers</button>
+ <button><i class="fa fa-user-group"></i> Community</button>
+ <button><i class="fa fa-share"></i> Invite Friends</button>
+
+ <h3>ACCOUNT</h3>
+ <button onclick="go('profile')"><i class="fa fa-user"></i> Profile</button>
+ <button><i class="fa fa-gear"></i> Settings</button>
+ <button><i class="fa fa-headset"></i> Support</button>
+</aside>
+
+<main>
+
+<!-- SIGN IN -->
+<section id="login" class="page active">
+ <div class="card">
+  <h2>Sign In</h2>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password (8+,1@aZ)">
+  <button class="primary" onclick="login()">Continue</button>
+
+  <button class="google" onclick="googleLogin()">
+   <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18">
+   Sign in with Google
+  </button>
+
+  <div class="actions">
+   <span class="link" onclick="go('signup')">
+    <i class="fa fa-user-plus"></i> Create account
+   </span>
+   <span class="link danger" onclick="forgot()">
+    <i class="fa fa-key"></i> Forgot password?
+   </span>
   </div>
+ </div>
 </section>
 
-<section id="products" class="page">
-  <h2>Add Product</h2>
-  <div class="upload-box">
-    <p>Upload your product</p>
-    <input type="file" id="upload">
-  </div>
+<!-- SIGN UP -->
+<section id="signup" class="page">
+ <div class="card">
+  <h2>Create Account</h2>
+  <input id="suEmail" placeholder="Email">
+  <input id="suPassword" type="password" placeholder="Strong password">
+  <button class="primary" onclick="register()">Register</button>
+ </div>
 </section>
 
-<section id="earn" class="page"><h2>Earn Money</h2></section>
-<section id="jobs" class="page"><h2>Jobs</h2></section>
-<section id="tasks" class="page"><h2>Tasks</h2></section>
-<section id="courses" class="page"><h2>Courses</h2></section>
-<section id="posts" class="page"><h2>Posts</h2></section>
-<section id="wallet" class="page"><h2>My Wallet</h2></section>
-<section id="withdraw" class="page"><h2>Withdraw</h2></section>
-<section id="deposit" class="page"><h2>Deposit</h2></section>
-<section id="transactions" class="page"><h2>Transactions</h2></section>
-<section id="inbox" class="page"><h2>Inbox</h2></section>
-<section id="gifts" class="page"><h2>Gifts</h2></section>
-<section id="referrals" class="page"><h2>Referrals</h2></section>
-<section id="followers" class="page"><h2>Followers</h2></section>
-<section id="profile" class="page"><h2>Profile</h2></section>
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+ <h2>Welcome to LamEarn 🚀</h2>
+ <p>Global work, jobs, learning & earning.</p>
+</section>
+
+<!-- UPLOAD -->
+<section id="upload" class="page">
+ <div class="card">
+  <h2>Upload Content</h2>
+  <select>
+   <option>Video</option>
+   <option>Photo</option>
+   <option>Book</option>
+   <option>Design / Logo</option>
+   <option>Other</option>
+  </select>
+  <input type="file" multiple>
+  <textarea placeholder="Describe your project"></textarea>
+  <button class="primary">Upload</button>
+ </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+ <div class="card">
+  <h2>My Profile</h2>
+  <input placeholder="Full Name">
+  <input placeholder="Country">
+  <input placeholder="Skills">
+  <button class="primary">Save Profile</button>
+ </div>
+</section>
+
+<!-- INBOX -->
+<section id="inbox" class="page">
+ <div class="card">
+  <h2>Inbox</h2>
+  <p>Chat system (UI ready)</p>
+ </div>
+</section>
 
 </main>
 
-<!-- BOTTOM -->
-<nav id="bottom" style="display:none">
-  <button class="active" onclick="go('home')">🏠<br>Home</button>
-  <button onclick="go('products')">🛒<br>Products</button>
-  <button onclick="go('inbox')">📩<br>Inbox</button>
-  <button onclick="go('wallet')">💼<br>Wallet</button>
-  <button onclick="go('profile')">👤<br>Profile</button>
+<nav>
+ <button class="active" onclick="go('dashboard')"><i class="fa fa-home"></i><br>Home</button>
+ <button onclick="go('upload')"><i class="fa fa-upload"></i><br>Upload</button>
+ <button onclick="go('inbox')"><i class="fa fa-comments"></i><br>Inbox</button>
+ <button onclick="go('profile')"><i class="fa fa-user"></i><br>Profile</button>
 </nav>
 
-<script>
-let historyStack=['home'];
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword,
+ createUserWithEmailAndPassword,
+ sendPasswordResetEmail,
+ GoogleAuthProvider,
+ signInWithPopup } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
-function login(){
-  auth.style.display='none';
-  register.style.display='none';
-  app.style.display='block';
-  header.style.display='flex';
-  bottom.style.display='flex';
-}
-function showRegister(){
-  auth.style.display='none';
-  register.style.display='flex';
-}
-function toggleMenu(){menu.classList.toggle('open')}
-function go(p){
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.getElementById(p).classList.add('active');
-  historyStack.push(p);
-  menu.classList.remove('open');
-  updateBack();
-  let up=document.getElementById('upload'); if(up) up.value='';
-}
-function goBack(){
-  if(historyStack.length>1){
-    historyStack.pop();
-    go(historyStack.pop());
-  }
-}
-function updateBack(){
-  backBtn.style.visibility = historyStack.length>1?'visible':'hidden';
-}
-function logout(){location.reload()}
-updateBack();
+const firebaseConfig = {
+ apiKey:"AIzaSyCZEWX2On7HXmGeOJwpkTW7v7KFTQaVsTI",
+ authDomain:"worklink-global-2d54e.firebaseapp.com",
+ projectId:"worklink-global-2d54e",
+ storageBucket:"worklink-global-2d54e.firebasestorage.app",
+ messagingSenderId:"935048390740",
+ appId:"1:935048390740:web:a365157b9242efb14465c1"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+window.login=()=>signInWithEmailAndPassword(auth,email.value,password.value)
+ .then(()=>go('dashboard'))
+ .catch(e=>alert(e.message));
+
+window.register=()=>createUserWithEmailAndPassword(auth,suEmail.value,suPassword.value)
+ .then(()=>go('dashboard'))
+ .catch(e=>alert(e.message));
+
+window.forgot=()=>sendPasswordResetEmail(auth,email.value)
+ .then(()=>alert("Reset email sent"));
+
+window.googleLogin=()=>signInWithPopup(auth,provider)
+ .then(()=>go('dashboard'));
+
+window.logout=()=>location.reload();
+
+window.go=p=>{
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+ document.getElementById(p).classList.add('active');
+ menu.classList.remove('open');
+};
+
+window.toggleMenu=()=>menu.classList.toggle('open');
 </script>
 
 </body>
-</html>
+  </html>
