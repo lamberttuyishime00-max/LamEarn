@@ -2,658 +2,235 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>LamEarn</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LamEarn – work and make money online</title>
-<meta name="description" content="LamEarn is a digital platform where users earn money through posts, digital products, gifts, and smart rewards.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://lamberttuyishime00-max.github.io/LamEarn/">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-
-
 <style>
-    
-    
-    .upload-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 14px;
-  border-radius:12px;
-  background:#f9fafb;
-  border:1px dashed #d1d5db;
-  font-size:14px;
-  font-weight:600;
-  color:#111827;
-  cursor:pointer;
-  transition:.2s ease;
-}
-
-.upload-btn:hover{
-  background:#eef2ff;
-  border-color:#6366f1;
-  color:#4f46e5;
-}
-
-.upload-btn:active{
-  transform:scale(.97);
-}
-    
-   .post-card img,
-.post-card .thumb{
-  height:120px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#e5e7eb,#f1f5f9);
-}
-  
-}
-   .brand-logo{
-  font-size:28px;
-  font-weight:800;
-  letter-spacing:-1px;
-}
-    
-   body{
-  font-family:'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-}
-
-
-    .post-card h3{
-  font-size:16px;
-  font-weight:700;
-  letter-spacing:-0.3px;
-}
-.post-card .meta{
-  font-size:13px;
-  font-weight:500;
-  color:var(--muted);
-}
-.send-btn{
-  background:linear-gradient(180deg,#2563eb,#1e40af);
-  border:none;
-  border-radius:14px;
-  padding:12px;
-  font-size:14px;
-  font-weight:700;
-  letter-spacing:-0.2px;
-}
-    .top-bar{
-  position: relative;
-  height:46px;
-  display:flex;
-  align-items:center;
-  background:#fff;
-  border-bottom:3px solid #eee;
-}
-
-/* Menu icon ibumoso */
-.menu-btn{
-  font-size:25px;
-  padding:0 5px;
-  cursor:pointer;
-}
-
-/* LamEarn hagati nyayo */
-.brand-logo{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-}
-  l
-    .menu-title{
-  margin:0 0 12px;
-  padding:10px 16px;
-  font-size:16px;
-  font-weight:600;
-  color:#111827;
-  border-bottom:1px solid #e5e7eb;
-}
-    /* SIDE MENU */
-.side-menu{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 260px;
-  height: 100vh;          /* menu ifata screen yose */
-  background: #ffffff;
-  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
-  padding-top: 60px;
-  overflow-y: auto;      /* ⭐ scroll if items ari nyinshi */
-  z-index: 3000;
-}
-
-/* Title */
-.menu-title{
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-/* Section title */
-.menu-section{
-  font-size: 15px;
-  color: 888;
-  margin: 15px 15px 5px;
-  text-transform: uppercase;
-}
-
-/* Menu links */
-.side-menu a{
-  display: block;
-  padding: 12px 18px;
-  color: #333;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-/* Hover effect */
-.side-menu a:hover{
-  background: #f2f2f2;
-}
-
-/* Hamburger button */
-.menu-btn{
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  font-size: 26px;
-  cursor: pointer;
-  z-index: 4000;
-}
-
-/* Hide menu */
-.hidden{
-  display: none;
-}
-/* MODAL BACKDROP */
-#giftModal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-/* HIDE STATE */
-#giftModal.hidden {
-  display: none;
-}
-
-/* MODAL BOX */
-#giftModal .modal-box {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 320px;
-  text-align: center;
-}
-    .bottom-nav div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-}
-
-.bottom-nav .icon {
-  font-size: 18px;
-  margin-bottom: 4px;
-}
 :root{
+  --primary:#2563eb;
   --bg:#f4f6f8;
   --card:#ffffff;
-  --text:#111;
+  --text:#111827;
   --muted:#6b7280;
-  --border:#e5e7eb;
-  --accent:#2563eb;
 }
-
 *{box-sizing:border-box}
+body{margin:0;font-family:system-ui;background:var(--bg);color:var(--text)}
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system;
-  background:var(--bg);
-  color:var(--text);
+/* AUTH */
+.auth{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.auth-box{
+  background:#fff;padding:24px;border-radius:16px;width:90%;max-width:360px
+}
+.auth-box input, .auth-box button{
+  width:100%;padding:12px;margin-top:10px;font-size:14px
+}
+.auth-box button{background:var(--primary);color:#fff;border:none;border-radius:10px}
+
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;width:100%;height:56px;
+  background:#fff;border-bottom:1px solid #e5e7eb;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;z-index:20
+}
+header h1{font-size:18px;margin:0}
+header button{background:none;border:none;font-size:22px}
+
+/* MENU */
+#menu{
+  position:fixed;top:0;left:-280px;width:280px;height:100%;
+  background:#fff;border-right:1px solid #e5e7eb;
+  padding:14px;overflow-y:auto;transition:.3s;z-index:30
+}
+#menu.open{left:0}
+#menu h3{margin:16px 0 6px;font-size:12px;color:var(--muted)}
+#menu button{
+  width:100%;text-align:left;background:none;border:none;
+  padding:10px;font-size:15px
 }
 
-/* TOPBAR */
-.topbar{
-  position:sticky;
-  top:0;
-  background:#fff;
-  padding:14px 16px;
-  font-weight:800;
-  border-bottom:1px solid var(--border);
-  text-align:center;
-}
+/* MAIN */
+main{padding:72px 14px 80px}
+.page{display:none}
+.page.active{display:block}
 
 /* SEARCH */
-.search{
-  width:calc(100% - 32px);
-  margin:16px;
-  padding:12px 14px;
-  border-radius:14px;
-  border:1px solid var(--border);
-}
+.search{width:100%;padding:12px;border-radius:999px;border:1px solid #e5e7eb}
 
 /* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
-  padding:0 16px 120px;
-}
-
-/* POST CARD */
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:14px;
-}
-
-.thumb{
-  height:110px;
-  background:#e5e7eb;
-  border-radius:14px;
-  margin-bottom:10px;
-}
-
-.card h3{
-  margin:0;
-  font-size:15px;
-}
-
-.card p{
-  margin:4px 0 10px;
-  font-size:13px;
-  color:var(--muted);
-}
-
-/* BUTTON */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.card{background:#fff;border-radius:16px;padding:12px}
+.img{height:120px;background:#e5e7eb;border-radius:12px;margin-bottom:10px}
 .btn{
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:12px;
-  background:var(--accent);
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
+  width:100%;padding:10px;margin-top:8px;border:none;
+  background:var(--primary);color:#fff;border-radius:999px
 }
 
-/* GIFT MODAL */
-.hidden{display:none}
-
-.gift-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:200;
-}
-
-.gift-box{
-  background:#fff;
-  padding:20px;
-  border-radius:18px;
-  width:85%;
-}
-
-.gift-box h3{
-  margin:0 0 8px;
-}
-
-.gift-box p{
-  margin:0 0 14px;
-  color:var(--muted);
+/* UPLOAD */
+.upload-box{
+  border:2px dashed #c7d2fe;
+  padding:30px;text-align:center;border-radius:16px;background:#fff
 }
 
 /* BOTTOM NAV */
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#fff;
-  border-top:1px solid var(--border);
-  display:flex;
-  justify-content:space-around;
-  padding:10px 0;
+nav{
+  position:fixed;bottom:0;left:0;width:100%;height:60px;
+  background:#fff;border-top:1px solid #e5e7eb;display:flex
 }
-
-.bottom-nav div{
-  font-size:12px;
-  color:var(--muted);
-  cursor:pointer;
+nav button{
+  flex:1;background:none;border:none;font-size:12px;color:#6b7280
 }
-
-.bottom-nav .active{
-  color:var(--accent);
-}
-.page{
-  display:none;
-  padding:16px;
-}
-
-.page.active{
-  display:block;
-  }
-  
-  .hidden{
-  display:none;
-}
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-}
-.modal-box{
-  background:#fff;
-  padding:16px;
-  width:90%;
-  max-width:400px;
-  border-radius:12px;
-}
-/* spacing inside gift modal */
-.modal-box h3{
-  margin-bottom:16px;
-  text-align:center;
-}
-
-.modal-box input,
-.modal-box textarea{
-  width:100%;
-  padding:10px;
-  margin-bottom:12px;   /* ← IYI NIYO ITANDUKANIJE */
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:14px;
-}
-
-.modal-actions{
-  display:flex;
-  flex-direction:column;
-  gap:12px;             /* ← spacing ya buttons */
-}
-
-.modal-actions .btn{
-  padding:12px;
-  border-radius:10px;
-  font-size:15px;
-}
-.hidden{display:none;}
+nav button.active{color:var(--primary)}
 </style>
 </head>
 
 <body>
-    
-    <!-- PAGES -->
-<main id="pages">
 
-  <section id="home" class="page active">
-    <!-- Home content (ibyo usanzwe ufite: search + posts) -->
-  </section>
-
-  <section id="earn" class="page hidden">
-    <h2>Earn Money</h2>
-    <p>Tasks, jobs, and ways to earn.</p>
-  </section>
-
-  <section id="jobs" class="page hidden">
-    <h2>Jobs</h2>
-    <p>Available jobs will appear here.</p>
-  </section>
-
-  <section id="tasks" class="page hidden">
-    <h2>Tasks</h2>
-    <p>Complete tasks and earn rewards.</p>
-  </section>
-
-  <section id="products" class="page hidden">
-    <h2>Products</h2>
-    <p>Digital products marketplace.</p>
-  </section>
-
-  <section id="courses" class="page hidden">
-    <h2>Courses</h2>
-    <p>Learning & education.</p>
-  </section>
-
-  <section id="posts" class="page hidden">
-    <h2>Posts</h2>
-    <p>User posts & gifts.</p>
-  </section>
-
-  <section id="wallet" class="page hidden">
-    <h2>My Wallet</h2>
-    <p>Balance & earnings.</p>
-  </section>
-
-  <section id="withdraw" class="page hidden">
-    <h2>Withdraw</h2>
-  </section>
-
-  <section id="deposit" class="page hidden">
-    <h2>Deposit</h2>
-  </section>
-
-  <section id="transactions" class="page hidden">
-    <h2>Transactions</h2>
-  </section>
-
-  <section id="inbox" class="page hidden">
-    <h2>Inbox</h2>
-  </section>
-
-  <section id="gifts" class="page hidden">
-    <h2>Gifts</h2>
-  </section>
-
-  <section id="referrals" class="page hidden">
-    <h2>Referrals</h2>
-  </section>
-
-  <section id="followers" class="page hidden">
-    <h2>Followers</h2>
-  </section>
-
-  <section id="profile" class="page hidden">
-    <h2>Profile</h2>
-  </section>
-
-  <section id="settings" class="page hidden">
-    <h2>Settings</h2>
-  </section>
-
-  <section id="support" class="page hidden">
-    <h2>Support</h2>
-  </section>
-
-
-    
-    
-    <!-- TOP BAR -->
-<div class="top-bar">
-  <span class="menu-btn" onclick="toggleMenu()">☰</span>
- <h2 class="brand-logo">LamEarn</h2>
-</div>
-
-  
-<input class="search" placeholder="🔍Search products, jobs, learning, earn...">
-
-<!-- POSTS (GIFTS ZEMEREWE GUSA HANO) -->
-<div class="grid">
-    
-<div class="card post-card">
-  <div class="thumb"></div>
-
-  <h3>Premium Book</h3>
-  <p>$5 · Popular</p>
-
-  <button class="btn" onclick="openGift(this)">
-    🎁 Send Gift
-  </button>
-</div>
-
-  <div class="card post-card">
-    <div class="thumb"></div>
-    <h3>Learning Course</h3>
-    <p>$10 · New</p>
-    <button class="btn" onclick="openGift(this)">🎁 Send Gift</button>
-  
+<!-- AUTH -->
+<section id="auth" class="auth">
+  <div class="auth-box">
+    <h2>LamEarn</h2>
+    <input placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="login()">Sign In</button>
+    <p style="text-align:center;margin-top:10px">
+      <a href="#" onclick="showRegister()">Create account</a>
+    </p>
   </div>
-  <!-- GIFT MODAL -->
-<div id="giftModal" class="modal hidden">
-  <div class="modal-box">
-    <h3>🎁 Send Gift</h3>
-
-    <input type="text" placeholder="User name">
-   <textarea placeholder="Message (optional)"></textarea>
-
-    <div class="modal-actions">
-      <button class="btn" onclick="sendGift()">Send</button>
-      <button class="btn cancel" onclick="closeGift()">Cancel</button>
-    </div>
-  </div>
-</div>
-
-</div>
-
 </section>
 
-<div class="bottom-nav">
-  <div onclick="show('home')" class="active">
-    <span class="icon">⌂</span>Home
+<section id="register" class="auth" style="display:none">
+  <div class="auth-box">
+    <h2>Register</h2>
+    <input placeholder="Name">
+    <input placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="login()">Register</button>
   </div>
-  <div onclick="show('products')">
-    <span class="icon">🛒</span>Products
+</section>
+
+<!-- MENU -->
+<aside id="menu">
+  <button onclick="go('home')">🏠 Home</button>
+  <button onclick="go('earn')">💰 Earn</button>
+  <button onclick="go('jobs')">🧑‍💻 Jobs</button>
+  <button onclick="go('tasks')">✅ Tasks</button>
+  <button onclick="go('products')">🛒 Products</button>
+  <button onclick="go('courses')">🎓 Courses</button>
+  <button onclick="go('posts')">📝 Posts</button>
+
+  <h3>WALLET</h3>
+  <button onclick="go('wallet')">💼 My Wallet</button>
+  <button onclick="go('withdraw')">💸 Withdraw</button>
+  <button onclick="go('deposit')">➕ Deposit</button>
+  <button onclick="go('transactions')">📊 Transactions</button>
+
+  <h3>SOCIAL</h3>
+  <button onclick="go('inbox')">📩 Inbox</button>
+  <button onclick="go('gifts')">🎁 Gifts</button>
+  <button onclick="go('referrals')">🤝 Referrals</button>
+  <button onclick="go('followers')">👥 Followers</button>
+
+  <h3>ACCOUNT</h3>
+  <button onclick="go('profile')">👤 Profile</button>
+  <button onclick="logout()">🚪 Logout</button>
+</aside>
+
+<!-- HEADER -->
+<header style="display:none" id="header">
+  <button id="backBtn" onclick="goBack()">←</button>
+  <h1>LamEarn</h1>
+  <button onclick="toggleMenu()">☰</button>
+</header>
+
+<!-- MAIN -->
+<main id="app" style="display:none">
+
+<section id="home" class="page active">
+  <input class="search" placeholder="🔍 Search products, jobs, learning...">
+  <div class="grid">
+    <div class="card">
+      <div class="img"></div>
+      <b>Premium Book</b><br>$5
+      <button class="btn">🎁 Send Gift</button>
+    </div>
+    <div class="card">
+      <div class="img"></div>
+      <b>Learning Course</b><br>$10
+      <button class="btn">🎁 Send Gift</button>
+    </div>
   </div>
-  <div onclick="show('inbox')">
-    <span class="icon">✉️</span>Inbox
-  </div>
-  <div onclick="show('wallet')">
-    <span class="icon">🏆</span>Wallet
-  </div>
-  <div onclick="show('profile')">
-    <span class="icon">👤</span>Profile
-  </div>
-  </div>
+</section>
 
-
-
-
-<!-- GIFT MODAL HTML -->
-<div id="giftModal" class="hidden">
-  <div class="modal-box">
-    <h3>Send Gift</h3>
-    <button onclick="sendGift()">Confirm</button>
-    <button onclick="closeGift()">Cancel</button>
-  </div>
-</div>
-
-
-}
-</script>
-<div id="sideMenu" class="side-menu hidden">
-
-
-
-    <h3 class="menu-title">LamEarn</h3>
-  <!-- MAIN -->
+<section id="products" class="page">
+  <h2>Add Product</h2>
   <div class="upload-box">
-  <h3>Add New Product</h3>
+    <p>Upload your product</p>
+    <input type="file" id="upload">
+  </div>
+</section>
 
-  <label class="upload-btn">
-    ⬆️ Upload
-    <input type="file" hidden>
-  </label>
-</div>
-  <a onclick="show('home')">⌂ Home</a>
-  <a onclick="show('earn')">💰 Earn Money</a>
-  <a onclick="show('jobs')">🧑‍💻 Jobs</a>
-  <a onclick="show('tasks')">✅ Tasks</a>
-  <a onclick="show('products')">🛒 Products</a>
-  <a onclick="show('courses')">🎓 Courses</a>
-  <a onclick="show('posts')">📝 Posts</a>
-<div class="upload-box">
-  
+<section id="earn" class="page"><h2>Earn Money</h2></section>
+<section id="jobs" class="page"><h2>Jobs</h2></section>
+<section id="tasks" class="page"><h2>Tasks</h2></section>
+<section id="courses" class="page"><h2>Courses</h2></section>
+<section id="posts" class="page"><h2>Posts</h2></section>
+<section id="wallet" class="page"><h2>My Wallet</h2></section>
+<section id="withdraw" class="page"><h2>Withdraw</h2></section>
+<section id="deposit" class="page"><h2>Deposit</h2></section>
+<section id="transactions" class="page"><h2>Transactions</h2></section>
+<section id="inbox" class="page"><h2>Inbox</h2></section>
+<section id="gifts" class="page"><h2>Gifts</h2></section>
+<section id="referrals" class="page"><h2>Referrals</h2></section>
+<section id="followers" class="page"><h2>Followers</h2></section>
+<section id="profile" class="page"><h2>Profile</h2></section>
 
- 
-  <!-- WALLET -->
-  <p class="menu-section">WALLET</p>
-  <a onclick="show('wallet')">💼 My Wallet</a>
-  <a onclick="show('withdraw')">💸 Withdraw</a>
-  <a onclick="show('deposit')">➕ Deposit</a>
-  <a onclick="show('transactions')">📊 Transactions</a>
+</main>
 
-  <!-- SOCIAL -->
-  <p class="menu-section">SOCIAL</p>
-  <a onclick="show('inbox')">✉️ Inbox</a>
-  <a onclick="show('gifts')">🎁 Gifts</a>
-  <a onclick="show('referrals')">🤝 Referrals</a>
-  <a onclick="show('followers')">👥 Followers</a>
-  <a onclick="openInviteLink()">📨 Invite Friends</a>
+<!-- BOTTOM -->
+<nav id="bottom" style="display:none">
+  <button class="active" onclick="go('home')">🏠<br>Home</button>
+  <button onclick="go('products')">🛒<br>Products</button>
+  <button onclick="go('inbox')">📩<br>Inbox</button>
+  <button onclick="go('wallet')">💼<br>Wallet</button>
+  <button onclick="go('profile')">👤<br>Profile</button>
+</nav>
 
-  <!-- ACCOUNT -->
-  <p class="menu-section">ACCOUNT</p>
-  <a onclick="show('profile')">👤 Profile</a>
-  <a onclick="show('settings')">⚙️ Settings</a>
-  <a onclick="show('support')">🆘 Support</a>
- <section id="logout" class="page hidden">  
-  <h2>🚪Logging out...</h2>  
- </section>
 <script>
-function toggleMenu(){
-  const menu = document.getElementById("sideMenu");
-  menu.classList.toggle("hidden");
+let historyStack=['home'];
+
+function login(){
+  auth.style.display='none';
+  register.style.display='none';
+  app.style.display='block';
+  header.style.display='flex';
+  bottom.style.display='flex';
 }
-
-function show(pageId){
-  document.querySelectorAll('.page').forEach(p=>{
-    p.classList.remove('active');
-  });
-
-  const page = document.getElementById(pageId);
-  if(page) page.classList.add('active');
-
-  const menu = document.getElementById('sideMenu');
-  if(menu) menu.classList.add('hidden');
+function showRegister(){
+  auth.style.display='none';
+  register.style.display='flex';
 }
-
-function openGift(btn){
-  document.getElementById("giftModal").classList.remove("hidden");
+function toggleMenu(){menu.classList.toggle('open')}
+function go(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById(p).classList.add('active');
+  historyStack.push(p);
+  menu.classList.remove('open');
+  updateBack();
+  let up=document.getElementById('upload'); if(up) up.value='';
 }
-
-function closeGift(){
-  document.getElementById("giftModal").classList.add("hidden");
+function goBack(){
+  if(historyStack.length>1){
+    historyStack.pop();
+    go(historyStack.pop());
+  }
 }
-
-function sendGift(){
-  alert("Gift sent successfully 🎉");
-  closeGift();
+function updateBack(){
+  backBtn.style.visibility = historyStack.length>1?'visible':'hidden';
 }
-
-function openInviteLink(){
-  window.open(
-    "https://lamearn.app/invite?ref=USER123",
-    "_blank"
-  );
-}
+function logout(){location.reload()}
+updateBack();
 </script>
+
 </body>
-    </html>
+</html>
